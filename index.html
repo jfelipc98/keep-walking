@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keep Walking - Juan Felipe Castro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0011ff;
+            color: #333;
+        }
+        header {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav {
+            background-color: #222;
+            padding: 0.5rem;
+            display: flex;
+            justify-content: center;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .dropbtn {
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .dropbtn:hover {
+            background-color: #333;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        main {
+            padding: 2rem;
+            text-align: center;
+            background-image: url('https://source.unsplash.com/random/800x600?motivation');
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        #quote-display {
+            font-size: 28px;
+            margin-bottom: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        button {
+            background-color: #000000;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        .author-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: right;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .author-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Keep Walking</h1>
+    </header>
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Menú</button>
+            <div class="dropdown-content">
+                <a href="#" id="special-quote">Frase Especial</a>
+                <a href="#" id="about">Acerca de</a>
+                <a href="#" id="motivation">Cómo Obtener Motivación</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div id="quote-display"></div>
+        <button id="new-quote">Nueva Frase</button>
+    </main>
+    <div class="content" id="content" style="display: none;"></div>
+    <div class="author-info">
+        <img src="/yo.jpg.jpeg" alt="Juan Felipe Castro" class="author-photo">
+        <p>Elaborado por Juan Felipe Castro</p>
+        <a href="https://www.instagram.com/juansxnchxzz_0?igsh=MWx3d2x0dDMxNGlsZQ==" target="_blank">Instagram</a>
+    </div>
+    <script>
+        const quotes = [
+            "No habrá luz al final del túnel, sin antes pasar un recorrido de oscuridad",
+            "Cree que podrás y ya estarás a medio camino.",
+            "La única forma de hacer un gran trabajo es amar lo que haces.",
+            "El éxito no es definitivo, el fracaso no es fatal: es el coraje de continuar lo que importa",
+            "No te esfuerces por ser impecable, sino más bien por ser de valor.",
+            "El futuro pertenece a quienes creen en la belleza de sus sueños en realidad.",
+            "La persistencia puede cambiar el fracaso en un logro extraordinario."
+        ];
+
+        function displayQuote() {
+            const quoteDisplay = document.getElementById('quote-display');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteDisplay.textContent = quotes[randomIndex];
+        }
+
+        document.getElementById('new-quote').addEventListener('click', displayQuote);
+        document.getElementById('special-quote').addEventListener('click', () => {
+            alert("Tu frase especial: Ámalo. Comete errores. Aprende. Sigue adelante.");
+        });
+
+        document.getElementById('about').addEventListener('click', () => {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h2>Acerca de</h2>
+                <p>Esto es una página elaborada con fines recreativos.</p>
+                <p>Créditos al autor: <a href="https://www.instagram.com/juansxnchxzz_0?igsh=MWx3d2x0dDMxNGlsZQ==" target="_blank">Instagram de Juan Felipe Castro</a></p>
+            `;
+            content.style.display = 'block';
+        });
+
+        document.getElementById('motivation').addEventListener('click', () => {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h2>Cómo Obtener Motivación</h2>
+                <p>La motivación es el combustible que impulsa nuestros sueños y metas. Aquí hay algunos consejos para mantener tu llama motivacional encendida:</p>
+                <ul>
+                    <li>Establece metas claras y alcanzables.</li>
+                    <li>Celebra tus pequeños logros en el camino.</li>
+                    <li>Rodéate de personas positivas y que te apoyen.</li>
+                    <li>Practica la gratitud diariamente.</li>
+                    <li>Cuida tu salud física y mental.</li>
+                </ul>
+                <p>Recuerda: "El viaje de mil millas comienza con un solo paso" - Lao Tzu</p>
+                <h3>Recursos Externos</h3>
+                <p>Explora estos enlaces para más inspiración y ayuda:</p>
+                <ul>
+                    <li><a href="https://www.ted.com/playlists/171/the_most_popular_talks_of_all" target="_blank">Charlas TED Motivacionales</a></li>
+                    <li><a href="https://www.psychologytoday.com/intl/basics/motivation" target="_blank">Artículos sobre Motivación en Psychology Today</a></li>
+                    <li><a href="https://www.betterhelp.com/" target="_blank">BetterHelp - Ayuda Psicológica Online</a></li>
+                </ul>
+            `;
+            content.style.display = 'block';
+        });
+
+        // Mostrar frase inicial
+        displayQuote();
+    </script>
+</body>
+</html>
